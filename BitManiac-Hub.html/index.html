@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitManiac | Premium Digital Hub</title>
+    <style>
+        
+        :root {
+            --primary-blue: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --border: #334155;
+        }
+
+        body.dark-mode {
+            --bg-color: #020617;
+            --card-bg: #0f172a;
+            --text-main: #f1f5f9;
+            --border: #475569;
+        }
+
+        .progress-bar {
+    width: 300px;
+    height: 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#fill {
+    height: 100%;
+    width: 0%;
+    background: repeating-linear-gradient(45deg, #444, #444 10px, #888 10px, #888 20px);
+    transition: width 0.1s;
+}
+
+.rocket {
+    display: inline-block;
+    font-size: 30px;
+    /* This makes the rocket tilt like your drawing */
+    transform: rotate(-45deg); 
+}
+        .card-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2563eb; /* That pro blue color */
+    color: white;
+    padding: 3px 10px;
+    border-radius: 8px 8px 0 0;
+    font-size: 0.8rem;
+}
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-main); transition: 0.3s; }
+        
+        header { 
+            padding: 15px 5%; background: var(--card-bg); 
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
+        }
+
+        .container { width: 92%; max-width: 1200px; margin: auto; padding-bottom: 50px; }
+
+        /* HERO & ADS */
+        .hero-thumbnail {
+            width: 100%; height: 50px; border-radius: 15px; margin: 0px 0;
+            background: url('https://pin.it/3e8YTW7pg') center/cover no-repeat;
+            border: 2px solid var(--border); background-color: #1e293b;
+        }
+
+        .global-search { 
+            width: 100%; padding: 15px; border-radius: 50px; border: 2px solid var(--primary-blue);
+            margin-bottom: 20px; background: var(--card-bg); color: var(--text-main); font-size: 1rem;
+        }
+
+        .ad-area { 
+            width: 100%; min-height: 90px; background: rgba(0,0,0,0.05); 
+            border: 1px dashed var(--border); margin: 20px 0; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+        }
+
+        /* SEGMENTED NAV BAR */
+        .nav-bar {
+            display: flex; border: 2px solid var(--text-main); border-radius: 10px;
+            overflow: hidden; margin-bottom: 20px; background: var(--card-bg);
+        }
+        .nav-btn {
+            flex: 1; text-align: center; padding: 15px 5px; text-decoration: none;
+            color: var(--text-main); font-weight: bold; font-size: 0.8rem;
+            border-right: 2px solid var(--text-main); transition: 0.2s;
+        }
+        .nav-btn:last-child { border-right: none; }
+        .nav-btn:hover { background: var(--primary-blue); color: #fff; }
+
+        /* SECTION STYLING */
+        .section-box { margin-top: 50px; padding: 20px; background: var(--card-bg); border-radius: 15px; border: 1px solid var(--border); }
+        
+        .section-header-flex {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+        }
+
+        .local-search {
+            padding: 8px 15px; border-radius: 20px; border: 1px solid var(--primary-blue);
+            background: transparent; color: var(--text-main); width: 250px;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        
+        .card { background: var(--bg-color); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .card-img { width: 100%; height: 140px; object-fit: cover; display: block; background-color: #333; }
+        .card-body { padding: 15px; }
+        .card-body h3 { font-size: 1.1rem; color: var(--primary-blue); margin-bottom: 5px; }
+        .card-body p { font-size: 0.8rem; margin-bottom: 15px; height: 35px; overflow: hidden; }
+
+        .dl-btn {
+            display: block; text-align: center; background: #138808; color: #fff;
+            text-decoration: none; padding: 10px; border-radius: 5px; font-weight: bold;
+        }
+        
+        /* The hover effect */
+        .dl-btn:hover {
+        background-color: #0056b3; /* Darker blue when hovering */
+        cursor: pointer;
+        transform: translateY(-2px); /* Slight lift effect */
+        
+        }
+​<!-- end list -->
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="color:var(--primary-blue)">BitManiac</h1>
+    <button onclick="document.body.classList.toggle('dark-mode')" style="padding:8px 15px; cursor:pointer; border-radius:20px;">🌓 Theme</button>
+</header>
+
+<div class="container">
+    <div class="hero-thumbnail"></div>
+
+    <input type="text" class="global-search" placeholder="🔍 🎮 💻 💿 📚 Search Everything..." onkeyup="universalSearch(this)">
+
+    <div class="ad-area">Propeller Ad #1</div>
+
+    <nav class="nav-bar">
+        <a href="#games" class="nav-btn">Games</a>
+        <a href="#soft" class="nav-btn">Software</a>
+        <a href="#os" class="nav-btn">OS</a>
+        <a href="#ebooks" class="nav-btn">E-Books</a>
+        <a href="#media" class="nav-btn">Media</a>
+    </nav>
+
+    <div class="ad-area">Propeller Ad #2 (Middle)</div>
+    
+    <section id="games" class="section-box">
+        <div class="section-header-flex">
+            <h2>🎮 Games & APKs:</h2>
+            <input type="text" class="local-search" placeholder="🔍Search in Games..." onkeyup="sectionSearch(this, 'grid-games')">
+        </div>
+        <div class="grid" id="grid-games"></div>
+    </section>
+    <div class="ad-area">Propeller Ad #4 (Middle)</div>
+    
+    <section id="soft" class="section-box">
+        <div class="section-header-flex">
+            <h2>💻 Pro Software & 📱 Apps:</h2>
+            <input type="text" class="local-search" placeholder="🔍Search in Software..." onkeyup="sectionSearch(this, 'grid-soft')">
+        </div>
+        <div class="grid" id="grid-soft"></div>
+    </section>
+    <div class="ad-area">Propeller Ad #2 (Middle)</div>
+    <div class="ad-area">Propeller Ad #2 (Middle)</div>
+
+    <section id="os" class="section-box">
+        <div class="section-header-flex">
+            <h2>💿 OS & 💾 ISOs:</h2>
+            <input type="text" class="local-search" placeholder="Search in OS..." onkeyup="sectionSearch(this, 'grid-os')">
+        </div>
+        <div class="grid" id="grid-os"></div>
+    </section>
+    <div class="ad-area"> 🔴BitManiac-hub © 2026. All rights reserved.🔴 </div>
+     
+    <section id="pdf" class="section-box">
+        <div class="section-header-flex">
+            <h2>  📚 PDF & E-books:</h2>
+            <input type="text" class="local-search" placeholder="Search in E books..." onkeyup="sectionSearch(this, 'grid-os')">
+        </div>
+    </section>
+</div>
+
+<script>
+
+    // SEARCH LOGIC
+    function universalSearch(input) {
+        let val = input.value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.display = card.innerText.toLowerCase().includes(val) ? "block" : "none";
+        });
+    }
+
+    function sectionSearch(input, gridId) {
+        let val = input.value.toLowerCase();
+        let cards = document.getElementById(gridId).querySelectorAll('.card');
+        cards.forEach(card => {
+            card.style.display = card.innerText.toLowerCase().includes(val) ? "block" : "none";
+        });
+    }
+
+</script>
+<script src="index.js"></script>
+<footer>
+    <p>&copy; 2026 BitManiac-Hub. All Rights Reserved. 🚀</p>
+</footer>
+    
+    </body> </html>
